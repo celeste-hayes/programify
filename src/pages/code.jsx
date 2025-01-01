@@ -1,3 +1,4 @@
+//Code exercise interactivity page
 export default function code() {
     return (
         <div>

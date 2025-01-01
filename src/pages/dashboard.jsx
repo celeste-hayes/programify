@@ -1,3 +1,4 @@
+//Main page once users logged in
 export default function dashboard() {
     return (
         <div>
