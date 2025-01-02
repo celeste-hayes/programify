@@ -11,6 +11,7 @@ import Connect from './pages/connect.jsx';
 import App from './App';
 // We will need to create a component to import PrivateRoute
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,26 +24,26 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element:
-      //<PrivateRoute> // Need to enable as protected route onces we have the component
-        <Dashboard />
+          //<PrivateRoute> // Need to enable as protected route onces we have the component
+          <Dashboard />
       },
       {
         path: 'learn',
         element:
           //<PrivateRoute> // Need to enable as protected route onces we have the component
-            <Learn />
+          <Learn />
       },
       {
         path: 'code',
         element:
           //<PrivateRoute> // Need to enable as protected route onces we have the component
-            <Code />
+          <Code />
       },
       {
         path: 'connect',
         element:
           //<PrivateRoute> // Need to enable as protected route onces we have the component
-            <Connect />
+          <Connect />
       },
     ],
   },
