@@ -16,8 +16,8 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`bg-dark min-vh-100 d-flex flex-column ${isCollapsed ? 'collapsed' : ''}`}
-      style={{ width: isCollapsed ? '80px' : '250px', transition: 'width 0.3s' }}
+      className={`sidebar bg-dark min-vh-100 d-flex flex-column ${isCollapsed ? 'collapsed' : ''}`}
+      style={{ width: isCollapsed ? '80px' : '250px', transition: 'width 0.3s', height: '100vh' }}
     >
 
       <div
