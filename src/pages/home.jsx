@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import './home.css';
 import axios from '../api/axios';
-
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -27,20 +28,27 @@ const SignUp = () => {
     };
 
     return (
-        <form onSubmit={handleSignUp}>
-            <h2>Sign Up</h2>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </label>
-            <br />
-            <label>
-                Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            </label>
-            <br />
-            <button type="submit">Sign Up</button>
-        </form>
+        <div className="centered-form">
+            <Form className="form-container" onSubmit={handleSignUp}>
+                <Form.Group className="mb-3" controlId="formGroupEmail">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required />
+                </Form.Group>
+                <Button type="submit" variant="primary">Sign Up</Button>
+            </Form>
+        </div>
     );
 };
 

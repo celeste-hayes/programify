@@ -2,7 +2,7 @@
   "name": "programify",
   "private": true,
   "version": "0.0.0",
-  "type": ".cjs",
+  "type": "commonjs",
   "scripts": {
     "start": "react-scripts start",
     "dev": "vite",

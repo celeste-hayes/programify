@@ -12,6 +12,7 @@ export default function App() {
   return (
     <div>
       <SignUp />
+
     </div>,
 
     <div className="d-flex">
