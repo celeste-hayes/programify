@@ -1,8 +1,16 @@
 //Main page once users logged in
-export default function dashboard() {
-    return (
-        <div>
-            <h1>Dashboard</h1>
-        </div>
-    );
+import React from 'react';
+import '../styles/dashboard.css';
+
+export default function Dashboard() {
+
+  return (
+    <>
+      <h1 className="greeting">
+        <span className="greeting-text">Hi there,</span>
+        <span className="name"> NAME!</span>
+      </h1>
+      <h2 className="subtitle">What would you like to learn?</h2>
+    </>
+  );
 }
