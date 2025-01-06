@@ -2,37 +2,49 @@
 import React from 'react';
 import '../styles/dashboard.css';
 import InspoCard from '../components/InspoCard';
-import { Container, Row, Col } from 'react-bootstrap';
+import Header from '../components/Header';
+import { Row, Col } from 'react-bootstrap';
 
 export default function Dashboard() {
     // Temp data for the Inspiration Cards will be fetched from an API in the future
-  const inspoCardsData = [
-    { title: "Career Tips", description: "Always be open to new opportunities.", category: "Growth" },
-    { title: "Trivia", description: "Symbolics.com was the first domain registered in 1985!", category: "Trivia" },
-    { title: "Motivation", description: "Keep pushing forward, no matter the odds.", category: "Motivation" },
-    { title: "Coding Tips", description: "Write clean and reusable code.", category: "Tip" },
-  ];
+    const inspoCardData = [
+      { category: "Career Tips", text: "Always be open to new opportunities." },
+      { category: "Trivia", text: "Symbolics.com was the first domain registered in 1985!"},
+      { category: "Motivation", text: "Keep pushing forward, no matter the odds."},
+      { category: "Coding Tips", text: "Write clean and reusable code."}
+    ];
 
   return (
     <>
-      <h1 className="greeting">
-        <span className="greeting-text">Hi there,</span>
-        <span className="name"> NAME!</span>
-      </h1>
-      <h2 className="subtitle">What would you like to learn?</h2>
-      <Container>
-        <Row className="mt-5 justify-content-center">
-          {inspoCardsData.map((card, index) => (
-            <Col key={index} xs={12} sm={6} md={3} className="d-flex justify-content-center">
-              <InspoCard 
-                title={card.title} 
-                description={card.description} 
-                category={card.category} 
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+     <Header />
+      <section className="section-divider">
+        <div className="container-fluid">
+          <div className="row g-3 p-0">
+            {/* Left Side */}
+            <div className="col-12 col-lg-4">
+              <h3>A better way to start learning.</h3>
+              <p>Inserting some text here is optional</p>
+            </div>
+
+            {/* Right Side (Inspiration Cards) */}
+            <div className="col-12 col-lg-8">
+              <Row>
+                {inspoCardData.map((card, index) => (
+                  <Col xs={12} sm={6} md={6} lg={6} key={index}>
+                    {/* Add a wrapper for each card to control spacing */}
+                    <div className="inspo-card-wrapper">
+                      <InspoCard
+                        text={card.text}
+                        category={card.category} 
+                      />
+                    </div>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

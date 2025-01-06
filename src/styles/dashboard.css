@@ -1,38 +1,61 @@
-h1.greeting {
-    font-size: 3rem;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  
-  .greeting-text {
+/*Hero/Welcome Section*/
+.header-container {
+  margin-bottom: 50px; /* Ensure some space at the bottom */
+}
+.greeting {
     background: linear-gradient(270deg, #2575FC 30%, #6A11CB 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.btn-get-started {
+    background: linear-gradient(45deg, #2575FC, #6A11CB, #462255);
+    border: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    color: white;
   }
   
-  h2.subtitle {
-    font-size: 2.5rem;
-    text-align: left;
-    margin-bottom: 20px;
+  .btn-get-started:hover {
+    background: #462255;
+    color: white;
+    transform: translateY(-3px);
   }
   
-  .subtitle {
-    background: linear-gradient(270deg, #6A11CB 30%, #F2AF29 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .btn-learn-more {
+    color: #F2AF29;
+    background-color: transparent;
+    border: 2px solid #F2AF29;
+    transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
   
-  .card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-    color: #6c757d;
+  .btn-learn-more:hover {
+    color: white;
+    background-color: #F2AF29;
+    border-color: #F2AF29;
+    transform: translateY(-3px);
   }
-  
-  
-  .card-text {
-    font-size: 1rem;
-    color: #6c757d ;
+
+  /* Inspo Card Styling */
+
+  section {
+    padding-top: 40px; /* Ensures a little padding at the top */
+}
+
+  .inspo-card-wrapper {
+    margin-bottom: 50px;
   }
+
+  .section-divider {
+    width: 100%;
+    height: 100px;
+    background: #ECE9E6;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    margin: 20px 0;
+  }
+
+  @media (min-width: 768px) {
+    .section-divider {
+        height: 770px;
+    }
+}
