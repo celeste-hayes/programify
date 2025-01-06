@@ -23,7 +23,7 @@ export default function App() {
           flexGrow: 1,
           overflowY: 'auto',
           padding: '1rem',
-          backgroundColor: '#f8f9fa',
+          backgroundColor: 'white',
         }}
       >
         <Outlet />
