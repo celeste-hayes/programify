@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import { BiSolidBriefcaseAlt, BiCodeAlt, BiSolidQuoteLeft, BiSolidPencil } from "react-icons/bi";
 import { RiResetRightLine } from "react-icons/ri";
 
-export default function Insights({ category, text }) {
+export default function InspoCard ({ category, text }) {
   const categoryIcons = {
     "Career Tips": <BiSolidBriefcaseAlt style={{ fontSize: '1rem', color: 'white'}} />,
     "Trivia": <BiCodeAlt style={{ fontSize: '1rem', color: 'white'}} />,
