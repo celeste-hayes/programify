@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../styles/home.css';
-import axios from '../api/axios';
+//import axios from '../api/axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -11,11 +11,28 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("/api/signup", { email, password });
+            //const response = await axios.post("/api/signup", { email, password });
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: JSON.stringify({ email, password }),
+                redirect: "follow"
+            };
+
+            const request = await fetch("/api/signup", requestOptions)
+            const data = await request.json()
+
             // Store JWT token in local storage
-            localStorage.setItem("token", response.data.token);
+            // localStorage.setItem("token", response.data.token);
+            // console.log(response.data.token);
             // Redirect or show a success message
             console.log("Sign up successful!");
+            // return response
+
         } catch (error) {
             if (error.response) {
                 console.error("Error signing up:", error.response.data);
