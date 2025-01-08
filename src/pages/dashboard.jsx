@@ -1,50 +1,80 @@
-//Main page once users logged in
-import React from 'react';
+import React, { useState } from 'react';
+import { Container, Row, Col} from 'react-bootstrap'; 
+import DashboardHeader from '../components/DashboardSections/Header';
+import IntroCardSection from '../components/DashboardSections/IntroCard';
+import DashboardFilter from '../components/DashboardSections/Filter';
+import InspoCard from '../components/DashboardSections/InspoCard'; 
+import GoalSection from '../components/DashboardSections/GoalSection';
+import CardSlider from '../components/CardSlider';
 import '../styles/dashboard.css';
-import InspoCard from '../components/DashboardSections/InspoCard';
-import Header from '../components/Header';
-import { Row, Col } from 'react-bootstrap';
 
 export default function Dashboard() {
-    // Temp data for the Inspiration Cards will be fetched from an API in the future
-    const inspoCardData = [
-      { category: "Career Tips", text: "Always be open to new opportunities." },
-      { category: "Trivia", text: "Symbolics.com was the first domain registered in 1985!"},
-      { category: "Motivation", text: "Keep pushing forward, no matter the odds."},
-      { category: "Coding Tips", text: "Write clean and reusable code."}
-    ];
+  const [activeCategory, setActiveCategory] = useState('all');
+  
+  // InspoCard data
+  const inspoCardData = [
+    { category: "Career Tips", text: "Always be open to new opportunities." },
+    { category: "Trivia", text: "Symbolics.com was the first domain registered in 1985!" },
+    { category: "Motivation", text: "Keep pushing forward, no matter the odds." },
+    { category: "Coding Tips", text: "Write clean and reusable code." }
+  ];
+
+  // Category Section & Helper Function
+  const renderCategory = (category, headerText, description, component) => {
+    return (
+      (activeCategory === 'all' || activeCategory === category) && (
+        <Col sm={12} key={category}>
+          <div className="category-section text-center">
+            <h1 className="section-header">{headerText}</h1>
+            <p className="fs-5 mb-5">{description}</p>
+            {component}
+          </div>
+        </Col>
+      )
+    );
+  };
 
   return (
-    <>
-     <Header />
-      <section className="section-divider">
-        <div className="container-fluid">
-          <div className="row g-3 p-0">
-            {/* Left Side */}
-            <div className="col-12 col-lg-4">
-              <h3>A better way to start learning.</h3>
-              <p>Inserting some text here is optional</p>
+    <div>
+      <DashboardHeader />
+      <IntroCardSection />
+      <DashboardFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+      <Container>
+        <Row className="g-4 justify-content-center mt-4">
+          
+          {/* Category 1 - Programify Insights */}
+          {renderCategory(
+            'category1', 
+            'Programify Insights', 
+            'Daily dose of inspiration, tips and knowledge.',
+            <div className="inspo-cards-container">
+              {inspoCardData.map((card, index) => (
+                <InspoCard key={index} category={card.category} text={card.text} />
+              ))}
             </div>
-
-            {/* Right Side (Inspiration Cards) */}
-            <div className="col-12 col-lg-8">
-              <Row>
-                {inspoCardData.map((card, index) => (
-                  <Col xs={12} sm={6} md={6} lg={6} key={index}>
-                    {/* Add a wrapper for each card to control spacing */}
-                    <div className="inspo-card-wrapper">
-                      <InspoCard
-                        text={card.text}
-                        category={card.category} 
-                      />
-                    </div>
-                  </Col>
-                ))}
-              </Row>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+          )}
+          {/* Category 2 - Goals */}
+          {renderCategory(
+            'category2',
+            'Think It. Ink It. Do It.',
+            <GoalSection />
+          )}
+          {/* Category 3 - Spotlight */}
+          {renderCategory(
+            'category3',
+            'Spotlight',
+            'Discover insights and motivation from other coders, to help fuel your coding journey!',
+            <CardSlider />
+          )}
+          {/* Category 4 - Study */}
+          {renderCategory(
+            'category4',
+            'Study Vault',
+            'Access all your favorite resources to revisit and continue your learning.',
+            <p>No content yet!</p>
+          )}
+        </Row>
+      </Container>
+    </div>
   );
 }
