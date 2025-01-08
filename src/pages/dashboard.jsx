@@ -1,7 +1,7 @@
 //Main page once users logged in
 import React from 'react';
 import '../styles/dashboard.css';
-import InspoCard from '../components/InspoCard';
+import InspoCard from '../components/DashboardSections/InspoCard';
 import Header from '../components/Header';
 import { Row, Col } from 'react-bootstrap';
 
