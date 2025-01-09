@@ -1,0 +1,50 @@
+/* Custom Colors */
+:root {
+  --custom-blue: #2575fc;
+  --custom-purple: #6a11cb;
+  --custom-dark-purple: #462255;
+  --custom-yellow: #f9a825;
+  --custom-light-gray: #e0e0e0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--custom-light-gray);
+}
+
+.sidebar {
+  background-color: var(--custom-dark-purple);
+  height: 100vh;
+}
+
+.sidebar .nav-link {
+  color: var(--custom-light-gray);
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sidebar .nav-link:hover {
+  background-color: var(--custom-purple);
+  color: #fff;
+}
+
+.sidebar .nav-link.active {
+  background-color: var(--custom-blue);
+  color: #fff;
+}
+
+#preview {
+  background-color: #fff;
+  color: #333;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
