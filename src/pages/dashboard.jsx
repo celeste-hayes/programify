@@ -26,7 +26,7 @@ export default function Dashboard() {
         <Col sm={12} key={category}>
           <div className="category-section text-center">
             <h1 className="section-header">{headerText}</h1>
-            <p className="fs-5 mb-5">{description}</p>
+            <div className="fs-5 mb-5">{description}</div>
             {component}
           </div>
         </Col>
