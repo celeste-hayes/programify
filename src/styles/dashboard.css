@@ -1,61 +1,181 @@
-/*Hero/Welcome Section*/
-.header-container {
-  margin-bottom: 50px; /* Ensure some space at the bottom */
+/* Dashboard Header styling */
+.logo {
+  width: 350px;
+  height: auto;
+  object-fit: contain;
 }
-.greeting {
-    background: linear-gradient(270deg, #2575FC 30%, #6A11CB 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.btn-get-started {
-    background: linear-gradient(45deg, #2575FC, #6A11CB, #462255);
+.dashboard-card {
+    background: linear-gradient(45deg, 
+        rgba(37, 117, 252, 0.6),
+        rgba(106, 17, 203, 0.6),
+        rgba(242, 175, 41, 0.6) 
+    );
+    background-size: 300% 300%;
+    animation: gradientAnimation 5s ease infinite;
+    border-radius: 15px;
     border: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-    color: white;
-  }
-  
-  .btn-get-started:hover {
-    background: #462255;
-    color: white;
-    transform: translateY(-3px);
-  }
-  
-  .btn-learn-more {
-    color: #F2AF29;
-    background-color: transparent;
-    border: 2px solid #F2AF29;
-    transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .btn-learn-more:hover {
-    color: white;
-    background-color: #F2AF29;
-    border-color: #F2AF29;
-    transform: translateY(-3px);
-  }
-
-  /* Inspo Card Styling */
-
-  section {
-    padding-top: 40px; /* Ensures a little padding at the top */
+    padding: 20px;
+    box-shadow: none;
+    height: 250px; 
+    color: #fff;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto; 
 }
 
-  .inspo-card-wrapper {
-    margin-bottom: 50px;
-  }
+/* Animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
-  .section-divider {
-    width: 100%;
-    height: 100px;
-    background: #ECE9E6;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+/* Intro / Dashboard Card styling */
+.dashboard-card .card-title {
+    font-size: 1.2rem;
+}
+
+.dashboard-card .card-text {
+    font-size: 1rem;
+}
+
+.dashboard-card .card-icon {
+    font-size: 1rem;
+}
+.white-link-button {
+    color: white !important;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.white-link-button:hover {
+    color: blue !important;
+}
+
+/* Dashboard Filter styling */
+.filter-section {
+    display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 40px;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 40px;
+
+}
+
+.filter-btn {
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .filter-btn.active {
+    background-color: transparent;
+    color: transparent;
+    border-bottom: 2px solid transparent;
+    background-image: linear-gradient(to right, #6A11cb, #F2AF29);
+    text-transform: bold;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  .filter-btn:hover {
+    color: #2575fc;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .filter-btn:hover:not(.active) {
+    color: #2575fc;
+    border-bottom: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  
+  h1.section-header {
+    background-image: linear-gradient(to right, #6A11cb, #F2AF29);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
     margin: 20px 0;
   }
 
-  @media (min-width: 768px) {
-    .section-divider {
-        height: 770px;
-    }
+/* Inspo Card Styling */
+.inspo-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.inspo-card {
+  border-radius: 10px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  color: #6c757d;
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
+  height: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.inspo-card:hover {
+  transform: scale(1.05);
+}
+
+.inspo-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.inspo-card-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3; 
+  -webkit-box-orient: vertical;
+}
+
+.inspo-card-btn {
+  align-self: center;
+}
+
+.inspo-card-btn:hover svg {
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .inspo-cards-container {
+    justify-content: center;
+  }
+
+  .inspo-card {
+    max-width: 100%;
+  }
 }
