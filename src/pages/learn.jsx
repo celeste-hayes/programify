@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LearnCard from '../components/LearnCard';
 import Filters from "../components/Filters";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/learn.css";
 
@@ -13,7 +13,7 @@ export default function Learn() {
       tag: "HTML",
       title: "Learn the Basics of HTML",
     },
-    // update based on API / fetch call protocalls - just a placeholder for now
+    // update based on API / fetch call protocols - just a placeholder for now
   ]);
 
   const [filteredResources, setFilteredResources] = useState(resources);
@@ -47,7 +47,10 @@ export default function Learn() {
 
   return (
     <div>
-      <h1>Learn</h1>
+      <div className="header-container"> {/* Add header container for alignment */}
+        <h1>Learn</h1>
+        <Button variant="primary">My Saved Resources</Button> {/* Add button here */}
+      </div>
       <Container className="mt-4">
         <Filters
           onFilterChange={handleFilterChange}
@@ -74,4 +77,3 @@ export default function Learn() {
     </div>
   );
 }
-  

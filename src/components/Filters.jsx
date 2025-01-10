@@ -13,7 +13,10 @@ const Filters = ({ onFilterChange }) => {
     "APIs",
     "AI Tools",
     "Programming Concepts",
-    "Other",
+    "Node",
+    "React",
+    "Python",
+    "Other", 
   ];
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,7 +39,7 @@ const Filters = ({ onFilterChange }) => {
       </ButtonGroup>
       <Form.Control
         type="text"
-        placeholder="Search..."
+        placeholder="Search for more coding resources..."
         value={searchQuery}
         onChange={handleSearchChange}
         className="mt-3"

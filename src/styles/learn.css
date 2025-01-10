@@ -8,19 +8,38 @@
 }
 
 /* Header styles */
+.header-container {
+  display: flex; /* Use flexbox for header alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between items */
+}
+
 h1 {
   font-family: 'Nunito', sans-serif; /* Use the Nunito font */
   font-size: 2rem; /* Font size */
   font-weight: 700; /* Bold text */
-  color: #462155; /* Dark Purple for text color */
+  background: linear-gradient(270deg, #2575FC 30%, #6A11CB 100%); /* Gradient background */
+  background-clip: text; /* Clip background to text */
+  -webkit-background-clip: text; /* For Safari */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
   margin: 0; /* Remove default margin */
   padding: 10px; /* Internal padding for the H1 */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  background-color: #f2af29; /* Gold background */
-  border-radius: 5px; /* Rounded corners for visual appeal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  display: inline-block; /* Limit background width to text only */
-  margin-bottom: 5px; /* Reduced space below the H1 */
+}
+
+/* Styles for the My Saved Resources button */
+.header-container .btn-primary {
+  background: linear-gradient(45deg, #2575FC, #6A11CB, #462255);
+  border: none; /* No border for the button */
+  transition: background 0.3s ease, transform 0.3s ease; /* Transition for hover effects */
+  color: white; /* Text color */
+}
+
+/* Hover styles for the My Saved Resources button */
+.header-container .btn-primary:hover {
+  background: #462255; /* Dark purple on hover */
+  color: white; /* Keep text color white on hover */
+  transform: translateY(-3px); /* Slight lift on hover */
 }
 
 /* Filters container styles */
@@ -42,7 +61,7 @@ h1 {
   display: flex; /* Use flexbox for button group */
   flex-wrap: wrap; /* Allow buttons to wrap */
   gap: 0.25rem; /* Space between buttons */
-  margin-bottom: 2px; /* Reduce space below the button group */
+  margin-bottom: 5px; /* Reduced space below the button group */
 }
 
 /* Individual button styles */
@@ -58,14 +77,14 @@ h1 {
   border: none; /* Remove border for rounded effect */
 }
 
-/* Assigning unique colors to buttons, ensuring alternation */
+/* Assigning unique colors to buttons from Programming Concepts to Other */
 .filters-container .btn-group button:nth-child(1) {
   background-color: #2575fc; /* Blue */
   color: white; /* White text */
 }
 
 .filters-container .btn-group button:nth-child(2) {
-  background-color: #462155; /* Dark Purple for second button */
+  background-color: #462155; /* Dark Purple */
   color: white; /* White text */
 }
 
@@ -75,17 +94,47 @@ h1 {
 }
 
 .filters-container .btn-group button:nth-child(4) {
-  background-color: #6a11cb; /* Purple for fourth button */
+  background-color: #6a11cb; /* Purple */
   color: white; /* White text */
 }
 
 .filters-container .btn-group button:nth-child(5) {
-  background-color: #7d84b2; /* Lilac for fifth button */
+  background-color: #7d84b2; /* Lilac */
   color: white; /* White text */
 }
 
 .filters-container .btn-group button:nth-child(6) {
-  background-color: #6a11cb; /* Set last button to Purple */
+  background-color: #462155; /* Dark Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(7) {
+  background-color: #f2af29; /* Gold / Yellow */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(8) {
+  background-color: #6a11cb; /* Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(9) {
+  background-color: #7d84b2; /* Lilac */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(10) {
+  background-color: #462155; /* Dark Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(11) {
+  background-color: #f2af29; /* Gold / Yellow */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(12) {
+  background-color: #6a11cb; /* Purple */
   color: white; /* White text */
 }
 
@@ -97,7 +146,7 @@ h1 {
 /* Search bar styles */
 .filters-container .form-control {
   width: calc(100% - 20px); /* Adjust width for search bar */
-  margin-top: 2px; /* Reduced space above the search bar */
+  margin-top: 5px; /* Reduced space above the search bar */
   padding: 0.25rem; /* Padding for search bar */
   border-radius: 4px; /* Rounded corners */
   border: 1px solid #ced4da; /* Border color */
@@ -110,10 +159,21 @@ h1 {
   box-shadow: 0 0 5px rgba(37, 117, 252, 0.5); /* Shadow on focus */
 }
 
+/* Update the search bar placeholder */
+.filters-container .form-control::placeholder {
+  color: #7d84b2; /* Color for placeholder text */
+  opacity: 0.7; /* Slightly transparent */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   h1 {
     font-size: 1.5rem; /* Smaller font size for mobile */
+    /* Retain gradient background styles */
+    background: linear-gradient(270deg, #2575FC 30%, #6A11CB 100%); /* Gradient background */
+    background-clip: text; /* Clip background to text */
+    -webkit-background-clip: text; /* For Safari */
+    -webkit-text-fill-color: transparent; /* Make the text color transparent */
   }
 
   .filters-container .form-control {
@@ -162,9 +222,10 @@ h1 {
 @media (max-width: 768px) {
   .learn-card {
     width: 100%; /* Full width on smaller screens */
-    margin: 0.5rem 0; /* Reduce margin for vertical stacking */
+    margin: 0.5rem; /* Smaller margin on mobile */
+  }
+
+  .learn-card-img {
+    width: 100%; /* Full width for images on mobile */
   }
 }
-
-
-
