@@ -16,7 +16,7 @@ import Login from './pages/login.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Welcome />,
 
   },
   {
@@ -24,9 +24,9 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: 'welcome',
+        path: 'home',
         element:
-          <Welcome />
+          <Home />
       },
       {
         path: 'login',

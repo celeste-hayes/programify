@@ -1,9 +1,12 @@
 import React from 'react';
 import '../styles/welcome.css';
+import { useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
 
 const Welcome = () => {
-    return (
+    const navigate = useNavigate();
 
+    return (
 
 
 
@@ -15,7 +18,7 @@ const Welcome = () => {
                     We're excited to welcome you to Programify! Our platform is designed by developers, for developers, offering a dynamic learning experience!!
                 </p>
                 <div className="d-flex justify-content-center gap-3">
-                    <a href="#get-started" className="btn btn-get-started btn-sm">Get Started</a>
+                    <Button className="btn-get-started btn-sm" onClick={() => navigate('/home')}>Get Started</Button>
                     <a href="#learn-more" className="btn btn-learn-more btn-sm">Learn More</a>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
@@ -20,7 +22,7 @@ const SignUp = () => {
             const requestOptions = {
                 method: "POST",
                 headers: myHeaders,
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password, firstName, lastName }),
                 redirect: "follow"
             };
 
@@ -32,7 +34,7 @@ const SignUp = () => {
             console.log('Api response', data);
 
             if (data.token) {
-                navigate('/welcome');
+                navigate('/dashboard');
             }
 
 
@@ -46,6 +48,22 @@ const SignUp = () => {
     return (
         <div className="centered-form fade-in">
             <Form className="form-container" onSubmit={handleSignUp}>
+                <Form.Group className="mb-3" controlId="formGroupFirstName">
+                    <Form.Label>First Name:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupLastName">
+                    <Form.Label>Last Name:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupEmail">
                     <Form.Label>Email:</Form.Label>
                     <Form.Control

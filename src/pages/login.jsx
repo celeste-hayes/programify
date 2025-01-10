@@ -34,7 +34,7 @@ const Login = () => {
             console.log('Api response', data);
 
             if (data.token) {
-                navigate('/welcome');
+                navigate('/dashboard');
             } else {
                 console.log('Login was not successful:', data);
             }
