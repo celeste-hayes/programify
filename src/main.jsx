@@ -8,6 +8,8 @@ import Learn from './pages/learn.jsx';
 import Code from './pages/code.jsx';
 import Connect from './pages/connect.jsx';
 import App from './App';
+import Welcome from './pages/welcome.jsx';
+import Login from './pages/login.jsx';
 // We will need to create a component to import PrivateRoute
 
 
@@ -21,6 +23,16 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
+      {
+        path: 'welcome',
+        element:
+          <Welcome />
+      },
+      {
+        path: 'login',
+        element:
+          <Login />
+      },
       {
         path: 'dashboard',
         element:

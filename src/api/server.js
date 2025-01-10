@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const SECRET_KEY = "your_secret_key";
+const SECRET_KEY = "OneTesterUp"; // Use a more secure secret key in production
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
@@ -30,6 +30,27 @@ app.post("/api/signup", async (req, res) => {
     res.json({ token });
   } catch (error) {
     console.error("Error saving user to the database:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const client = await pool.connect();
+    const selectQuery = 'SELECT * FROM users WHERE email = $1 AND password = $2';
+    const result = await client.query(selectQuery, [email, password]); // Corrected query
+    client.release();
+
+    if (result.rowCount > 0) {
+      const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
+      res.json({ token });
+    } else {
+      res.status(401).json({ error: "Invalid email or password" });
+    }
+  } catch (error) {
+    console.error("Error logging in:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
