@@ -1,3 +1,4 @@
+import React from 'react';
 //Resource page for content
 export default function learn() {
     return (

@@ -1,3 +1,4 @@
+import React from 'react';
 //Page to contact us or connect with us for any questions
 export default function connect() {
     return (
