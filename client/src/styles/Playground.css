@@ -36,6 +36,7 @@ body {
 }
 
 #preview {
+  min-height: 600px;
   background-color: #fff;
   color: #333;
   font-family: 'Courier New', Courier, monospace;
@@ -48,3 +49,5 @@ button {
 button:hover {
   transform: scale(1.05);
 }
+
+  
