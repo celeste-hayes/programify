@@ -1,33 +1,38 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { sequelize, InspoCard } = require('./models');
+const bodyParser = require('body-parser');
+const { authDb, inspoDb } = require('./config');
+const inspoRoutes = require('./routes/api/insporoutes');
+const authRoutes = require('./routes/api/authRoutes');
+const { PORT = 5000 } = process.env;
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
+// Middleware
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get('/api/inspo-cards', async (req, res) => {
-  try {
-    const inspoCards = await InspoCard.findAll(); 
-    res.json(inspoCards);
-  } catch (err) {
-    console.error('Error fetching inspo cards:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+// Routes
+app.use('/api', authRoutes);
+app.use('/api/inspo', inspoRoutes);
 
-sequelize.sync({ force: false })
+// DB connection and server start
+authDb.authenticate()  // Connect to auth database
   .then(() => {
-    console.log('Connected to database successfully.');
+    console.log('Connected to Authentication database successfully.');
+
+    return inspoDb.authenticate();  // Connect to inspiration database
+  })
+  .then(() => {
+    console.log('Connected to Inspiration database successfully.');
+
+    // Start the server
     app.listen(PORT, () => {
       console.log(`Server is listening on port ${PORT}`);
     });
   })
   .catch(error => {
-    console.error('Error connecting to the database:', error);
+    console.error('Error connecting to one or more databases:', error);
   });
 

@@ -1,7 +1,7 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/inspoconnection');
+const { DataTypes } = require('sequelize');
+const { inspoDb } = require('../config');
 
-const InspoCard = sequelize.define('InspoCard', {
+const InspoCard = inspoDb.define('InspoCard', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -17,7 +17,8 @@ const InspoCard = sequelize.define('InspoCard', {
   },
 }, {
   tableName: 'inspo_cards',
-  timestamps: false,
+  timestamps: false,      
 });
 
 module.exports = InspoCard;
+

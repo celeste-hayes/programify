@@ -1,18 +1,17 @@
 const express = require('express');
-const { InspoCard } = require('./models');
+const { InspoCard } = require('../../models/Inspiration');
 
-const app = express();
+const router = express.Router();
 
-app.get('/api/inspo-cards', async (req, res) => {
+// Route to fetch all inspiration cards
+router.get('/inspo-cards', async (req, res) => {
   try {
     const cards = await InspoCard.findAll();
-    res.json(cards);
+    res.json(cards);  // Send the retrieved cards as JSON
   } catch (error) {
     console.error('Error fetching inspo cards:', error);
     res.status(500).send('Server error');
   }
 });
 
-app.listen(3001, () => {
-  console.log('Server running on port 3001');
-});
+module.exports = router;
