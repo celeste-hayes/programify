@@ -12,7 +12,7 @@ router.use('/auth', authRoutes);
 router.use('/api', authenticateToken, apiRoutes);
 
 // Default route
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
   res.send('Welcome to the API');
 });
 

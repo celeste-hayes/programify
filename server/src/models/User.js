@@ -1,17 +1,18 @@
 import { DataTypes, Model } from 'sequelize';
-import bcrypt from 'bcrypt';
 
 export class User extends Model {
-    async setPassword(password) {
-        const saltRounds = 10;
-        this.password = await bcrypt.hash(password, saltRounds);
-    }
-}
+    id;
+    first_name;
+    last_name;
+    username;
+    password;
+    email;
+};
 
 export function UserFactory(sequelize){
   User.init(
     {
-      Id: {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -51,6 +52,5 @@ export function UserFactory(sequelize){
       }
     }
   );
-
   return User;
 }

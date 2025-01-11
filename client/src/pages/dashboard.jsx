@@ -1,64 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import DashboardHeader from '../components/DashboardSections/Header';
 import IntroCardSection from '../components/DashboardSections/IntroCard';
 import DashboardFilter from '../components/DashboardSections/Filter';
-import InspoCard from '../components/DashboardSections/InspoCard';
 import GoalSection from '../components/DashboardSections/GoalSection';
 import CardSlider from '../components/CardSlider';
-import axios from 'axios';
 import '../styles/dashboard.css';
+import InspoCardComponent from '../components/DashboardSections/InspoCardComponent';
 
 export default function Dashboard() {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [inspoCardData, setInspoCardData] = useState({
-    'Career Tips': null,
-    'Trivia': null,
-    'Motivation': null,
-    'Coding Tips': null,
-  });
-
-  const fetchInspoCardForCategory = async (category) => {
-    try {
-      const response = await axios.get('http://localhost:3001/api/inspo-cards');
-      const data = response.data;
-
-      const categoryCards = data.filter((card) => card.category === category);
-      if (categoryCards.length > 0) {
-        const randomCard = categoryCards[Math.floor(Math.random() * categoryCards.length)];
-        return randomCard;
-      }
-      return null;
-    } catch (error) {
-      console.error('Error fetching inspo card:', error);
-      return null;
-    }
-  };
-
-  const fetchInspoCards = async () => {
-    const categories = ['Career Tips', 'Trivia', 'Motivation', 'Coding Tips'];
-    const newInspoCardData = {};
-
-    for (const category of categories) {
-      const card = await fetchInspoCardForCategory(category);
-      newInspoCardData[category] = card;
-    }
-
-    setInspoCardData(newInspoCardData);
-  };
-
-  useEffect(() => {
-    fetchInspoCards();
-  }, []);
-
-  const refreshCard = async (category) => {
-    const updatedCard = await fetchInspoCardForCategory(category);
-    setInspoCardData(prevData => ({
-      ...prevData,
-      [category]: updatedCard,
-    }));
-  };
-
   const renderCategory = (category, headerText, description, component) => {
     return (
       (activeCategory === 'all' || activeCategory === category) && (
@@ -85,16 +36,7 @@ export default function Dashboard() {
             'Programify Insights',
             'Daily dose of inspiration, tips and knowledge.',
             <div className="inspo-cards-container">
-              {Object.keys(inspoCardData).map(category => (
-                inspoCardData[category] && (
-                  <InspoCard
-                    key={inspoCardData[category].id}
-                    category={inspoCardData[category].category}
-                    text={inspoCardData[category].text}
-                    refreshCard={refreshCard}
-                  />
-                )
-              ))}
+              <InspoCardComponent />
             </div>
           )}
           

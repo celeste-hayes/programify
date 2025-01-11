@@ -1,24 +1,31 @@
-const { DataTypes } = require('sequelize');
-const { inspoDb } = require('../config');
+// models/inspiration.js
+import { DataTypes, Model } from 'sequelize';
 
-const InspoCard = inspoDb.define('InspoCard', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  text: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
-}, {
-  tableName: 'inspo_cards',
-  timestamps: false,      
-});
+// Define the Inspiration model
+export class Inspiration extends Model {}
 
-module.exports = InspoCard;
+// Create and initialize the Inspiration model
+export function InspirationFactory(sequelize) {
+  Inspiration.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    text: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+  }, {
+    sequelize,
+    tableName: 'inspo_cards',
+    timestamps: false, // No timestamps needed
+  });
+
+  return Inspiration;
+}
 
