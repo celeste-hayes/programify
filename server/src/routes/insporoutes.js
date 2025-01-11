@@ -1,5 +1,5 @@
 const express = require('express');
-const { InspoCard } = require('../../models/Inspiration');
+const { InspoCard } = require('../models/Inspiration');
 
 const router = express.Router();
 

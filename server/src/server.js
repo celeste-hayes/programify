@@ -1,38 +1,27 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const { authDb, inspoDb } = require('./config');
-const inspoRoutes = require('./routes/api/insporoutes');
-const authRoutes = require('./routes/api/authRoutes');
-const { PORT = 5000 } = process.env;
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import cors from 'cors';
+import sequelize from './config/connection.js';
+import routes from './routes/index.js';
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
+// Use CORS before routes
+app.use(cors());  // Enable CORS first
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/api', authRoutes);
-app.use('/api/inspo', inspoRoutes);
+// Use your routes after middleware
+app.use('/api', routes);  // Make sure to use '/api' as the route prefix
 
-// DB connection and server start
-authDb.authenticate()  // Connect to auth database
-  .then(() => {
-    console.log('Connected to Authentication database successfully.');
-
-    return inspoDb.authenticate();  // Connect to inspiration database
-  })
-  .then(() => {
-    console.log('Connected to Inspiration database successfully.');
-
-    // Start the server
-    app.listen(PORT, () => {
-      console.log(`Server is listening on port ${PORT}`);
-    });
-  })
-  .catch(error => {
-    console.error('Error connecting to one or more databases:', error);
+sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
   });
-
+})
+.catch((err) => {
+    console.log(`Failed to sync database or start server: ${err.message}`);
+});
