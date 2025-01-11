@@ -11,7 +11,7 @@ export class User extends Model {
 export function UserFactory(sequelize){
   User.init(
     {
-      id: {
+      Id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

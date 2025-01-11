@@ -1,70 +1,64 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Auth from '../utils/auth';
+import { login } from '../api/authAPI';
 import '../styles/home.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [loginData, setLoginData] = useState({ 
+        email: '', 
+        password: '' 
+    });
+
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginData({
+          ...loginData,
+          [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-type", "application/json");
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: JSON.stringify({ email, password }),
-                redirect: "follow"
-            };
-            console.log("Sending API request with:", requestOptions);
-
-            const request = await fetch("http://localhost:5175/api/login", requestOptions);
-            console.log("Request completed awaiting response...");
-
-            if (!request.headers.get('content-type')?.includes('application/json')) {
-                throw new Error("Server did not return JSON. Received: " + await request.text());
-            }
-
-            const data = await request.json();
-            console.log('Api response', data);
-
-            if (data.token) {
-                navigate('/dashboard');
-            } else {
-                console.log('Login was not successful:', data);
-            }
-        } catch (error) {
-            console.error("Error logging in:", error);
+          const data = await login(loginData);
+          Auth.login(data.token);
+          navigate('/dashboard');
+        } catch (err) {
+          console.error('Failed to login', err);
         }
     };
 
     return (
         <div className='centered-form fade-in'>
-            <Form className="form-container" onSubmit={handleLogin}>
+            <Form className="form-container" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupEmail">
                     <Form.Label>Email:</Form.Label>
                     <Form.Control
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
+                        value={loginData.email}
+                        onChange={handleChange}
                         required />
                 </Form.Group>
                 <Form.Group className='mb-3' controlId="formGroupPassword">
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        name="password"
+                        value={loginData.password}
+                        onChange={handleChange}
                         required />
                 </Form.Group>
                 <Button type="submit" variant="primary">Login</Button>
                 <div className="login-link">
-                    <p>Don't have an account? <Button variant="link" onClick={() => navigate('/')}>Sign Up</Button></p>
+                    <p>Don't have an account? 
+                        <Button variant="link" onClick={() => navigate('/signup')}>Sign Up</Button>
+                    </p>
                 </div>
             </Form>
         </div>
