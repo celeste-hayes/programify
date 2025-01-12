@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt'; // Ensure bcrypt is imported
 import jwt from 'jsonwebtoken';
-import { User } from '../config/connection.js'; // Ensure the correct path to your User model
+import { User } from '../models/index.js'; // Ensure the correct path to your User model
 
 console.log('bcrypt imported:', bcrypt);
 

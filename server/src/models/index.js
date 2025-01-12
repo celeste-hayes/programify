@@ -1,5 +1,5 @@
 // models/index.js
-import sequelize from '../config/connection.js'
+import {sequelize} from '../config/connection.js'
 import { UserFactory } from './user.js';
 import { InspirationFactory } from './inspiration.js';
 
