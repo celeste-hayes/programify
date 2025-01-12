@@ -5,47 +5,49 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 const SignUp = () => {
-    const [email, setEmail] = useState(""); 
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState(""); 
+    const [lastName, setLastName] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
-    
 
     const handleSignUp = async (e) => {
         e.preventDefault();
         setErrorMessage("");
         setIsSubmitting(true);
-        
+
         try {
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, firstName, lastName }), // Body data to send
+                body: JSON.stringify({ email, password, firstName, lastName }),
             };
-    
+
+            console.log('Sending request:', requestOptions);
+
             // Send the request to the backend API
-            const response = await fetch("/api/auth/signup", requestOptions);
-    
+            const response = await fetch("http://localhost:3001/api/auth/signup", requestOptions);
+
             // Check if the response is successful (status code 2xx)
             if (!response.ok) {
                 const errorData = await response.text();
+                console.error('Signup failed:', errorData);
                 throw new Error(errorData || "An error occurred during signup.");
             }
-    
+
             const data = await response.json();
-    
+            console.log('Response data:', data);
+
             if (data.token) {
                 // If the signup is successful, navigate to the dashboard
-                // Optionally, save the token here if needed for future authentication
                 localStorage.setItem("authToken", data.token);
                 navigate('/dashboard');
             } else {
                 setErrorMessage("Signup failed. Please try again.");
             }
-    
+
         } catch (error) {
             console.error("Error signing up:", error);
             setErrorMessage(error.message || "An unexpected error occurred.");
@@ -53,6 +55,7 @@ const SignUp = () => {
             setIsSubmitting(false);
         }
     };
+
 
     return (
         <div className="centered-form fade-in">
@@ -64,7 +67,7 @@ const SignUp = () => {
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)} // Update state on change
-                        required 
+                        required
                     />
                 </Form.Group>
 
@@ -75,7 +78,7 @@ const SignUp = () => {
                         type="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)} // Update state on change
-                        required 
+                        required
                     />
                 </Form.Group>
 
@@ -86,7 +89,7 @@ const SignUp = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)} // Update state on change
-                        required 
+                        required
                     />
                 </Form.Group>
 
@@ -97,7 +100,7 @@ const SignUp = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} // Update state on change
-                        required 
+                        required
                     />
                 </Form.Group>
 
@@ -108,7 +111,7 @@ const SignUp = () => {
 
                 {/* Link to Login */}
                 <div className="login-link">
-                    <p>Already have an account? 
+                    <p>Already have an account?
                         <Button variant="link" onClick={() => navigate('/login')}>Login</Button>
                     </p>
                 </div>
@@ -121,4 +124,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-

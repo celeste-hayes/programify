@@ -6,7 +6,7 @@ import apiRoutes from './api/index.js';
 const router = Router();
 
 // Authentication routes are available under /auth
-router.use('/auth', authRoutes); 
+router.use('/api//auth', authRoutes); 
 
 // Other API routes that require authentication (protected by JWT) are under /api
 router.use('/api', authenticateToken, apiRoutes);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/code.css"
+import "../styles/Playground.css"
 
 const CodePlayground = () => {
   const [code, setCode] = useState("<!-- Let's code and have fun -->");

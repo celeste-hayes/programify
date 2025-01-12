@@ -1,51 +1,29 @@
 import { Router } from 'express';
+import bcrypt from 'bcrypt'; // Ensure bcrypt is imported
 import jwt from 'jsonwebtoken';
-import { User } from '../models/user.js';
-import bcrypt from 'bcrypt';
+import { User } from '../config/connection.js'; // Ensure the correct path to your User model
+
+console.log('bcrypt imported:', bcrypt);
 
 const router = Router();
-
-// User login route
-export const login = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ where: { email } });
-
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-
-    const passwordIsValid = await bcrypt.compare(password, user.password);
-    if (!passwordIsValid) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-
-    const token = jwt.sign(
-      { email: user.email, firstName: user.firstName, lastName: user.lastName },
-      process.env.JWT_SECRET_KEY || 'SECRET_KEY',
-      { expiresIn: '1h' }
-    );
-
-    return res.json({ token });
-
-  } catch (error) {
-    return res.status(500).json({ error: 'Server error' });
-  }
-};
-
 
 // User signup route
 export const register = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
   try {
+    console.log('Request body:', req.body);
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'User with this email already exists' });
     }
 
+    console.log('No existing user found. Proceeding to hash password.');
+
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log('Password hashed. Creating new user.');
 
     const newUser = await User.create({
       email,
@@ -54,19 +32,26 @@ export const register = async (req, res) => {
       lastName
     });
 
+    console.log('New user created:', newUser);
+
+    // Generate a token for the user
+    const token = jwt.sign(
+      { email: newUser.email, firstName: newUser.firstName, lastName: newUser.lastName },
+      process.env.JWT_SECRET_KEY || 'SECRET_KEY',
+      { expiresIn: '1h' }
+    );
+
     return res.status(201).json({
       message: 'User created successfully',
-      user: { email: newUser.email, firstName: newUser.firstName, lastName: newUser.lastName }
+      user: { email: newUser.email, firstName: newUser.firstName, lastName: newUser.lastName },
+      token, // Include token in the response
     });
 
   } catch (error) {
-    console.error('Error signing up:', error);
+    console.error('Error during signup:', error);
     return res.status(500).json({ error: 'Server error' });
   }
 };
-
-// POST - Login existing user
-router.post('/login', login);
 
 // POST - Register a new user
 router.post('/signup', register);

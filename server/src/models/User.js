@@ -1,56 +1,51 @@
 import { DataTypes, Model } from 'sequelize';
+import bcrypt from 'bcrypt';
 
-export class User extends Model {
-    id;
-    first_name;
-    last_name;
-    username;
-    password;
-    email;
-};
+export class User extends Model {}
 
-export function UserFactory(sequelize){
-  User.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
+export function UserFactory(sequelize) {
+  User.init({
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+     
+      unique: true,
+      validate: {
+        isEmail: true,
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: true,
-        },
+    },
+    password: {
+      type: DataTypes.STRING,
+      
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      
+      field: 'first_name',
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      
+      field: 'last_name',
+    },
+  }, {
+    sequelize,
+    tableName: 'users',
+    timestamps: true,
+    hooks: {
+      beforeCreate: async (user) => {
+        user.password = await bcrypt.hash(user.password, 10);
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      beforeUpdate: async (user) => {
+        if (user.changed('password')) {
+          user.password = await bcrypt.hash(user.password, 10);
+        }
       },
-      first_name: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      last_name: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-    }, {
-      sequelize,
-      tableName: 'users',
-      hooks: {
-        beforeCreate: async (user) => {
-          await user.setPassword(user.password);
-        },
-        beforeUpdate: async (user) => {
-          if (user.changed('password')) {
-            await user.setPassword(user.password);
-          }
-        },
-      }
-    }
-  );
+    },
+  });
   return User;
 }
