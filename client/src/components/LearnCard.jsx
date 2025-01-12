@@ -9,7 +9,7 @@ const LearnCard = ({ href, thumbnail, tag, title, likeCallback }) => {
 
   const handleLike = () => {
     setLiked(!liked);
-    likeCallback(href, !liked);
+    likeCallback(href, !liked); // Trigger callback with the new like state
   };
 
   return (
