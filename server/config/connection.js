@@ -7,4 +7,4 @@ const sequelize = new Sequelize(process.env.DB_URL, {
   dialect: 'postgres',
 });
 
-export { sequelize };
+export { sequelize};
