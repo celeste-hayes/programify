@@ -1,19 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
+import cors from 'cors';
 import { sequelize } from './config/connection.js'; // Ensure correct path
-import apiRouter from './routes/api/index.js'; // Ensure correct path
+import { authRouter } from './routes/api/auth-routes.js'; // Ensure correct path
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api', apiRouter);
+
+app.use('/api/auth', authRouter);
+
+//app.use('/api', apiRouter);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
