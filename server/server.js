@@ -1,24 +1,21 @@
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 import { sequelize } from './config/connection.js'; // Ensure correct path
-import authRoutes from './routes/auth-routes.js'; // Ensure correct path
-import { userRouter } from './routes/api/user-routes.js'; // Ensure correct path
-import bodyParser from 'body-parser';
+import apiRouter from './routes/api/index.js'; // Ensure correct path
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-///app.use(cors());
-///app.use(bodyParser.json());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRouter);
+// app.use('/api/auth', authRoutes);
+// app.use('/api/users', userRouter);
+app.use('/api', apiRouter);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
@@ -27,7 +24,7 @@ app.use((err, req, res, next) => {
 });
 
 // Sync DB and start the server
-sequelize.sync()
+sequelize.sync({ force: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is listening on port ${PORT}`);

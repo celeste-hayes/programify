@@ -1,15 +1,14 @@
 import { Router } from 'express';
-import authRoutes from './auth-routes.js';
 import { authenticateToken } from '../middleware/auth.js';
-import apiRoutes from './api/index.js';
+import apiRouter from './api/index.js';
 
 const router = Router();
 
-// Authentication routes are available under /auth
-router.use('/api//auth', authRoutes); 
-
 // Other API routes that require authentication (protected by JWT) are under /api
-router.use('/api', authenticateToken, apiRoutes);
+//TODO: Restore the authenticateToken middleware
+//TODO: MVP WITHOUT Auth since project is due by tomorrow..
+//router.use('/api', authenticateToken, apiRoutes);
+router.use('/api', apiRouter);
 
 // Default route
 router.get('/', (_req, res) => {
