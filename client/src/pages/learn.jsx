@@ -2,55 +2,39 @@ import React, { useState, useEffect } from "react";
 import LearnCard from "../components/LearnCard";
 import Filters from "../components/Filters";
 import { Container, Row, Button } from "react-bootstrap";
-import { fetchAllResources } from "../api/LearnAPI"; // Corrected path
+import { fetchYouTubeResources } from "../api/LearnAPI"; // Ensure correct path
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/learn.css";
 
 export default function Learn() {
-  const [resources, setResources] = useState([]); // All resources fetched from APIs
-  const [filteredResources, setFilteredResources] = useState([]); // Resources after filtering
-  const [selectedCategory, setSelectedCategory] = useState(null); // Currently selected category
+  const [resources, setResources] = useState([]); // Resources after filtering
+  const [selectedCategory, setSelectedCategory] = useState(""); // Currently selected category
   const [searchQuery, setSearchQuery] = useState(""); // Current search query
 
-  // Fetch all resources from APIs
-  const fetchResources = async () => {
+  // Fetch resources for the selected category
+  const fetchCategoryResources = async (category) => {
     try {
-      const allResources = await fetchAllResources(); // Fetch from GitHub, YouTube, and Contentful
-      setResources(allResources); // Store full set of resources
-      setFilteredResources(allResources); // Initialize filtered resources
+      const categoryResources = await fetchYouTubeResources(category); // Fetch YouTube resources based on category
+      console.log("Fetched Category Resources:", categoryResources); // Log category resources
+      setResources(categoryResources); // Initialize filtered resources with category-specific results
     } catch (error) {
-      console.error("Error fetching resources:", error);
+      console.error("Error fetching category resources:", error);
     }
-  };
-
-  // Filter resources based on category and search query
-  const filterResources = (category, query) => {
-    const filtered = resources.filter((resource) => {
-      const matchesCategory = category ? resource.tag === category : true;
-      const matchesQuery = query
-        ? resource.title.toLowerCase().includes(query.toLowerCase())
-        : true;
-      return matchesCategory && matchesQuery;
-    });
-    setFilteredResources(filtered);
   };
 
   // Handle category change from Filters component
   const handleFilterChange = (category) => {
+    console.log(`Selected Category: ${category}`);
     setSelectedCategory(category); // Update selected category state
-    filterResources(category, searchQuery); // Re-filter resources
+    fetchCategoryResources(category); // Fetch resources for other categories
   };
 
   // Handle search query change from Filters component
   const handleSearchChange = (query) => {
+    console.log(`Search Query: ${query}`);
     setSearchQuery(query); // Update search query state
-    filterResources(selectedCategory, query); // Re-filter resources
+    fetchCategoryResources(selectedCategory); // Fetch resources for other categories with the search query
   };
-
-  // Fetch resources on initial load or when the refresh button is clicked
-  useEffect(() => {
-    fetchResources();
-  }, []);
 
   return (
     <div>
@@ -67,8 +51,8 @@ export default function Learn() {
         />
         <Row className="mt-3">
           {/* Render LearnCards */}
-          {filteredResources.length > 0 ? (
-            filteredResources.map((resource) => (
+          {resources.length > 0 ? (
+            resources.map((resource) => (
               <LearnCard
                 key={resource.href}
                 href={resource.href}
@@ -82,12 +66,6 @@ export default function Learn() {
             <p>No resources found.</p>
           )}
         </Row>
-        {/* Refresh Button */}
-        <div className="text-center mt-4">
-          <Button variant="secondary" onClick={fetchResources}>
-            Refresh Resources
-          </Button>
-        </div>
       </Container>
     </div>
   );

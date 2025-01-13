@@ -4,8 +4,10 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import '../styles/learn.css';
 
-const Filters = ({ onFilterChange }) => {
+const Filters = ({ onFilterChange, searchQuery, onSearchChange }) => {
   const categories = [
+    "GitHub",
+    "YouTube",
     "HTML",
     "CSS",
     "JavaScript",
@@ -16,13 +18,14 @@ const Filters = ({ onFilterChange }) => {
     "Node",
     "React",
     "Python",
-    "Other", 
+    "Other",
   ];
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    onFilterChange(category);
   };
 
   return (
@@ -31,7 +34,8 @@ const Filters = ({ onFilterChange }) => {
         {categories.map((category) => (
           <Button
             key={category}
-            onClick={() => onFilterChange(category)}
+            className={selectedCategory === category ? "active" : ""}
+            onClick={() => handleCategoryClick(category)}
           >
             {category}
           </Button>
@@ -41,7 +45,7 @@ const Filters = ({ onFilterChange }) => {
         type="text"
         placeholder="Search for more coding resources..."
         value={searchQuery}
-        onChange={handleSearchChange}
+        onChange={(e) => onSearchChange(e.target.value)}
         className="mt-3"
       />
     </div>

@@ -14,10 +14,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-
 app.use('/api/auth', authRouter);
 
-//app.use('/api', apiRouter);
+// Serve environment variables to the client
+app.get('/env', (req, res) => {
+  res.json({
+    VITE_GITHUB_TOKEN: process.env.VITE_GITHUB_TOKEN,
+    VITE_YOUTUBE_API_KEY: process.env.VITE_YOUTUBE_API_KEY,
+    VITE_FREECODECAMP_API_URL: process.env.VITE_FREECODECAMP_API_URL,
+  });
+});
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {

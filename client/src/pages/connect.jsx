@@ -33,7 +33,7 @@ const profiles = [
         email: "Natali.di.bartolo@gmail.com",
     },
     {
-        profileImage: rileyImage, 
+        profileImage: rileyImage,
         name: "Riley Kerr",
         githubLink: "https://github.com/RyDeveloper13",
         email: "rileykerr635@gmail.com",
