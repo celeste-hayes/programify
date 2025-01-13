@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import DashboardHeader from '../components/DashboardSections/Header';
-import IntroCardSection from '../components/DashboardSections/IntroCard';
 import DashboardFilter from '../components/DashboardSections/Filter';
 import GoalSection from '../components/DashboardSections/GoalSection';
 import CardSlider from '../components/CardSlider';
@@ -26,8 +24,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <DashboardHeader />
-      <IntroCardSection />
+
       <DashboardFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
       <Container>
         <Row className="g-4 justify-content-center mt-4">
@@ -39,14 +36,14 @@ export default function Dashboard() {
               <InspoCardComponent />
             </div>
           )}
-          
+
           {/* Category 2 - Goals */}
           {renderCategory(
             'category2',
             'Think It. Ink It. Do It.',
             <GoalSection />
           )}
-          
+
           {/* Category 3 - Spotlight */}
           {renderCategory(
             'category3',
@@ -54,7 +51,7 @@ export default function Dashboard() {
             'Discover insights and motivation from other coders, to help fuel your coding journey!',
             <CardSlider />
           )}
-          
+
           {/* Category 4 - Study */}
           {renderCategory(
             'category4',

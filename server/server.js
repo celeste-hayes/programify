@@ -14,9 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/auth', authRoutes);
-// app.use('/api/users', userRouter);
-app.use('/api', apiRouter);
+
+app.use('/api/auth', authRouter);
+
+//app.use('/api', apiRouter);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
