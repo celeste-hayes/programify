@@ -13,7 +13,7 @@ export default function InspoCardComponent() {
   // Fetch a random card for a given category
   const fetchInspoCardForCategory = async (category) => {
     try {
-      const response = await axios.get('/api/inspo-cards');
+      const response = await axios.get('http://localhost:3001/api/inspo-cards');
       const data = response.data;
       console.log(`Data fetched for ${category}:`, data);  // Log the data fetched from API
 
