@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+/* General styles for the learn page */
+.learn-page {
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack items vertically */
+  padding: 20px; /* Padding for the entire page */
+}
+
+/* Header styles */
+.header-container {
+  display: flex; /* Use flexbox for header alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between items */
+}
+
+h1 {
+  font-family: 'Nunito', sans-serif; /* Use the Nunito font */
+  font-size: 2rem; /* Font size */
+  font-weight: 700; /* Bold text */
+  background: linear-gradient(270deg, #2575FC 30%, #6A11CB 100%); /* Gradient background */
+  background-clip: text; /* Clip background to text */
+  -webkit-background-clip: text; /* For Safari */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  margin: 0; /* Remove default margin */
+  padding: 10px; /* Internal padding for the H1 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Styles for the My Saved Resources button */
+.header-container .btn-primary {
+  background: linear-gradient(45deg, #2575FC, #6A11CB, #462255);
+  border: none; /* No border for the button */
+  transition: background 0.3s ease, transform 0.3s ease; /* Transition for hover effects */
+  color: white; /* Text color */
+}
+
+/* Hover styles for the My Saved Resources button */
+.header-container .btn-primary:hover {
+  background: #462255; /* Dark purple on hover */
+  color: white; /* Keep text color white on hover */
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Filters container styles */
+.filters-container {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack filters vertically */
+  align-items: flex-start; /* Align items to the left */
+  background-color: #f8f9fa; /* Light background for filters */
+  padding: 10px; /* Padding for filters container */
+  margin-left: 0; /* Reset left margin for alignment */
+  margin-top: 5px; /* Reduced space from the H1 */
+  width: calc(100% - 20px); /* Full width minus some padding */
+  border-radius: 5px; /* Rounded corners for visual appeal */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Button group styles */
+.filters-container .btn-group {
+  display: flex; /* Use flexbox for button group */
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  gap: 0.25rem; /* Space between buttons */
+  margin-bottom: 5px; /* Reduced space below the button group */
+}
+
+/* Individual button styles */
+.filters-container .btn-group button {
+  font-family: 'Nunito', sans-serif; /* Match button font with H1 */
+  border-radius: 20px; /* Fully rounded corners */
+  height: 36px; /* Height for buttons */
+  padding: 0 12px; /* Padding for buttons */
+  font-size: 0.9rem; /* Font size */
+  font-weight: 600; /* Medium font weight */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover effect */
+  min-width: 100px; /* Minimum width for buttons */
+  border: none; /* Remove border for rounded effect */
+}
+
+/* Assigning unique colors to buttons from Programming Concepts to Other */
+.filters-container .btn-group button:nth-child(1) {
+  background-color: #2575fc; /* Blue */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(2) {
+  background-color: #462155; /* Dark Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(3) {
+  background-color: #f2af29; /* Gold / Yellow */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(4) {
+  background-color: #6a11cb; /* Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(5) {
+  background-color: #7d84b2; /* Lilac */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(6) {
+  background-color: #462155; /* Dark Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(7) {
+  background-color: #f2af29; /* Gold / Yellow */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(8) {
+  background-color: #6a11cb; /* Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(9) {
+  background-color: #7d84b2; /* Lilac */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(10) {
+  background-color: #462155; /* Dark Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(11) {
+  background-color: #f2af29; /* Gold / Yellow */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:nth-child(12) {
+  background-color: #6a11cb; /* Purple */
+  color: white; /* White text */
+}
+
+.filters-container .btn-group button:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+/* Search bar styles */
+.filters-container .form-control {
+  width: calc(100% - 20px); /* Adjust width for search bar */
+  margin-top: 5px; /* Reduced space above the search bar */
+  padding: 0.25rem; /* Padding for search bar */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ced4da; /* Border color */
+  transition: border-color 0.2s ease; /* Transition for focus */
+}
+
+/* Search bar focus styles */
+.filters-container .form-control:focus {
+  border-color: #2575fc; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5); /* Shadow on focus */
+}
+
+/* Update the search bar placeholder */
+.filters-container .form-control::placeholder {
+  color: #7d84b2; /* Color for placeholder text */
+  opacity: 0.7; /* Slightly transparent */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+    /* Retain gradient background styles */
+    background: linear-gradient(270deg, #2575FC 30%, #6A11CB 100%); /* Gradient background */
+    background-clip: text; /* Clip background to text */
+    -webkit-background-clip: text; /* For Safari */
+    -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  }
+
+  .filters-container .form-control {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .filters-container .btn-group button {
+    height: 30px; /* Smaller height for mobile */
+    font-size: 0.7rem; /* Smaller font size for mobile */
+    min-width: 80px; /* Ensure minimum width on mobile */
+  }
+}
+
+.learn-card {
+  border: 2px solid #f2af29; /* Yellow outline */
+  border-radius: 10px; /* Rounded corners for the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin: 1rem; /* Margin around the card */
+  padding: 10px; /* Padding inside the card for spacing */
+  text-align: center; /* Center the text within the card */
+}
+
+.learn-card-img {
+  width: 90%; /* Make the image smaller */
+  height: auto; /* Maintain aspect ratio */
+  padding-top: 5px; /* Padding at the top of the card */
+  margin-bottom: 10px; /* Space below the image */
+}
+
+.learn-card-title {
+  font-family: 'Nunito', sans-serif; /* Match the font to the page */
+  color: #462155; /* Dark purple for title text */
+}
+
+.learn-card .card-text {
+  font-family: 'Nunito', sans-serif; /* Match the font to the page */
+  color: #462155; /* Optional: Dark purple for text */
+}
+
+/* Center the save button */
+.learn-card .text-center {
+  margin-top: 10px; /* Margin for spacing above the button */
+}
+
+/* Media queries for responsive layout */
+@media (max-width: 768px) {
+  .learn-card {
+    width: 100%; /* Full width on smaller screens */
+    margin: 0.5rem; /* Smaller margin on mobile */
+  }
+
+  .learn-card-img {
+    width: 100%; /* Full width for images on mobile */
+  }
+}

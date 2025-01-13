@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaList, FaBook, FaCode } from 'react-icons/fa';
-import DashboardCard from '../DashboardCard'; // Assuming this is correctly located
+import DashboardCard from '../DashboardCard';
 import '../../styles/dashboard.css';
 
 export default function IntroCardSection() {

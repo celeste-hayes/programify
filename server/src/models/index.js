@@ -1,7 +1,9 @@
-const sequelize = require('../config/inspoconnection');
-const InspoCard = require('./inspomodel');
+// models/index.js
+import {sequelize} from '../config/connection.js'
+import { UserFactory } from './user.js';
+import { InspirationFactory } from './inspiration.js';
 
-module.exports = {
-  sequelize,
-  InspoCard,
-};
+const User = UserFactory(sequelize);
+const Inspiration = InspirationFactory(sequelize);
+
+export { sequelize, User, Inspiration };  // Exporting both User and Inspiration
