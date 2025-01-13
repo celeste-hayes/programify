@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import InspoCard from '../InspoCard';
 
 export default function InspoCardComponent() {
@@ -56,13 +55,13 @@ export default function InspoCardComponent() {
               </div>
             );
           }
-          const { id, category: cardCategory, text } = card;
+          const { id, category: cardCategory, description } = card;
           return (
             <div key={id} className="m-2">
               <InspoCard
                 key={id}
                 category={cardCategory}
-                text={text}
+                description={description}
                 refreshCard={refreshCard}
               />
             </div>

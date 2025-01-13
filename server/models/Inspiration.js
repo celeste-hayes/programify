@@ -16,11 +16,7 @@ export function InspirationFactory(sequelize) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    text: { // Change 'text' to 'description' is better then 'text'
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    description: { // Added a description field to replace 'text' but I did not want to break the code
+    description: { 
       type: DataTypes.TEXT,
       allowNull: false,
     },

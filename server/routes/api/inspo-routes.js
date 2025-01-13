@@ -46,7 +46,7 @@ router.get('/inspo-cards/category/:category', async (req, res) => {
 router.post('/inspo-cards', async (req, res) => {
   const { title, description, category, text } = req.body;
   try {
-    const newCard = await Inspiration.create({ title, description, category, text });
+    const newCard = await Inspiration.create({ title, description, category });
     res.status(201).json(newCard);
   } catch (error) {
     console.error('Error creating new inspo card:', error);
