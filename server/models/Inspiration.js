@@ -14,11 +14,11 @@ export function InspirationFactory(sequelize) {
     },
     category: {
       type: DataTypes.STRING,
-      allowNull: false,
+      
     },
     description: { 
       type: DataTypes.TEXT,
-      allowNull: false,
+      
     },
   }, {
     sequelize,
