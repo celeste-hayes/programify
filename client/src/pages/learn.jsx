@@ -40,7 +40,7 @@ export default function Learn() {
     <div>
       <div className="header-container">
         <h1 className="learn-header">Learn</h1>
-        <Button variant="primary">My Saved Resources</Button>
+
       </div>
       <Container className="mt-4">
         {/* Filters Component */}
@@ -63,7 +63,9 @@ export default function Learn() {
               />
             ))
           ) : (
-            <p>No resources found.</p>
+            <div className="filterResouceText">
+              <h2>Please Click A Filter To Get Started</h2>
+            </div>
           )}
         </Row>
       </Container>
