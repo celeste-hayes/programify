@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "depcheck": "^1.4.7"
+    "depcheck": "^1.4.7",
+    "dotenv": "^16.4.7"
   }
 }

@@ -13,14 +13,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* Change to flex-end to align form to the right */
     height: 100vh;
-    /* Full viewport height */
     padding: 0 50px;
-    /* Add some padding to the sides */
 }
 
-.container {
+.login-container {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -31,7 +28,7 @@ body {
     transform: translateX(-20%);
 }
 
-.header {
+.login-header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,10 +51,10 @@ body {
 }
 
 .inputs {
-    margin-top: 55px;
+    margin-top: 40px;  /* Adjusted the top margin for inputs */
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px; /* Reduced the gap between the inputs */
 }
 
 .input {
@@ -79,7 +76,7 @@ body {
 .input input {
     width: 400px;
     height: 50px;
-    padding: 0px 30px;
+    padding: 0px 20px;
     background: none;
     border: none;
     outline: none;
@@ -90,8 +87,9 @@ body {
 .submit-container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin: 90px auto;
+    gap: 10px;
+    margin: 40px auto; /* Reduced the top and bottom margin for submit container */
+    padding: 10px 0; /* Reduced padding */
 }
 
 .submit {
@@ -99,17 +97,53 @@ body {
     justify-content: center;
     align-items: center;
     width: 220px;
-    height: 59px;
-    color: #fff;
-    background: #4c00b4;
+    height: 50px; /* Reduced the height of the buttons */
     border-radius: 50px;
     border: none;
-    font-size: 25px;
+    font-size: 22px; /* Adjusted font size */
     font-weight: 700;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.gray {
-    background: #eaeaea;
-    color: #797979;
+/* Gray (Inactive) state */
+.submit.gray {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.submit.gray:hover {
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+/* Toggle button (Login/Sign Up button) */
+.submit.toggle-button {
+    background-color: #4c00b4; /* Purple */
+    border-color: #4c00b4;
+    color: white;
+}
+
+.submit.toggle-button:hover {
+    background-color: #4500a1; /* Darker shade of purple on hover */
+    border-color: #4500a1;
+}
+
+/* Active Submit button (for Sign Up/Login) */
+.submit.submit-active {
+    background-color: #F2AF29; /* Golden-yellow */
+    border-color: #F2AF29;
+    color: white;
+}
+
+.submit.submit-active:hover {
+    background-color: #e59b26; /* Slightly darker golden yellow on hover */
+    border-color: #e59b26;
+}
+
+.submit:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }

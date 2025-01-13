@@ -1,11 +1,21 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(rgba(42, 0, 183, 0.7), rgba(66, 0, 108, 0.7));
+}
+
 .welcome-page-wrapper {
     width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    background: linear-gradient(rgba(42, 0, 183, 0.7), rgba(66, 0, 108, 0.7));
+    overflow: auto;
 }
 
 .welcome-page-container {
@@ -15,9 +25,10 @@
     width: 100%;
     max-width: 1400px;
     height: 100%;
+    background: linear-gradient(rgba(42, 0, 183, 0.7), rgba(66, 0, 108, 0.7));
 }
 
-.welcome-page-container>* {
+.welcome-page-container > * {
     margin: 10px;
 }
 
