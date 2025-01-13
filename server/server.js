@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import cors from 'cors';
 import { sequelize } from './config/connection.js'; // Ensure correct path
-import { authRouter } from './routes/api/auth-routes.js'; // Ensure correct path
+import routes  from './routes/index.js'; // Ensure correct path
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -14,16 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/auth', authRouter);
+app.use(routes);
 
-// Serve environment variables to the client
-app.get('/env', (req, res) => {
-  res.json({
-    VITE_GITHUB_TOKEN: process.env.VITE_GITHUB_TOKEN,
-    VITE_YOUTUBE_API_KEY: process.env.VITE_YOUTUBE_API_KEY,
-    VITE_FREECODECAMP_API_URL: process.env.VITE_FREECODECAMP_API_URL,
-  });
-});
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {

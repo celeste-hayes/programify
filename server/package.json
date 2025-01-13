@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "npm run dev:backend",
-    "dev:backend": "nodemon src/server.js",
-    "migrate": "sequelize db:migrate"
+    "dev:backend": "nodemon server.js",
+    "migrate": "sequelize db:migrate",
+    "start": "node server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
