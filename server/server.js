@@ -4,6 +4,7 @@ dotenv.config();
 import cors from 'cors';
 import { sequelize } from './config/connection.js';
 import routes  from './routes/index.js';
+import { inspoRouter } from './routes/api/inspo-routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(routes);
+app.use ('/api', inspoRouter);
 
 
 // Error Handling Middleware

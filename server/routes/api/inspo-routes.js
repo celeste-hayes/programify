@@ -15,6 +15,7 @@ router.get('/inspo-cards', async (req, res) => {
   }
 });
 
+
 // Get by id inspo cards
 router.get('/inspo-cards/:id', async (req, res) => {
   const { id } = req.params;
