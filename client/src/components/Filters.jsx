@@ -41,13 +41,7 @@ const Filters = ({ onFilterChange, searchQuery, onSearchChange }) => {
           </Button>
         ))}
       </ButtonGroup>
-      <Form.Control
-        type="text"
-        placeholder="Search for more coding resources..."
-        value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)}
-        className="mt-3"
-      />
+
     </div>
   );
 };

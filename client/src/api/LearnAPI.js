@@ -1,4 +1,5 @@
 let env = {};
+const DEAFAULT_YOUTUBE_API_KEY = 'AIzaSyBFhvSSw7mRvF1P8biweSFotszKySovOMY';
 
 const fetchEnvVariables = async () => {
   if (Object.keys(env).length === 0) {
@@ -8,6 +9,7 @@ const fetchEnvVariables = async () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       env = await response.json();
+      console.log("Fetched environment variables:", env);
     } catch (error) {
       console.error("Error fetching environment variables:", error);
     }
@@ -16,12 +18,15 @@ const fetchEnvVariables = async () => {
 
 export const fetchYouTubeResources = async (category = "") => {
   await fetchEnvVariables();
-  const apiKey = env.VITE_YOUTUBE_API_KEY;
+  const apiKey = env.VITE_YOUTUBE_API_KEY || DEAFAULT_YOUTUBE_API_KEY;
 
   if (!apiKey) {
     console.error("YouTube API key is missing! Add VITE_YOUTUBE_API_KEY to your .env file.");
     return [];
   }
+
+  console.log(`Using YouTube API key: ${apiKey}`);
+
   try {
     const response = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${category}&type=video&maxResults=5&key=${apiKey}`
