@@ -1,4 +1,3 @@
-/* Custom Colors */
 :root {
   --custom-blue: #2575fc;
   --custom-purple: #6a11cb;
@@ -8,16 +7,16 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Nunito', sans-serif;
   background-color: var(--custom-light-gray);
 }
 
-.sidebar {
+.code-sidebar {
   background-color: var(--custom-dark-purple);
   height: 100vh;
 }
 
-.sidebar .nav-link {
+.code-sidebar .nav-link {
   color: var(--custom-light-gray);
   padding: 10px 15px;
   margin: 5px 0;
@@ -25,12 +24,12 @@ body {
   transition: background-color 0.3s;
 }
 
-.sidebar .nav-link:hover {
+.code-sidebar .nav-link:hover {
   background-color: var(--custom-purple);
   color: #fff;
 }
 
-.sidebar .nav-link.active {
+.code-sidebar .nav-link.active {
   background-color: var(--custom-blue);
   color: #fff;
 }

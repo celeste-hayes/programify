@@ -55,7 +55,7 @@ export default function Learn() {
   return (
     <div>
       <div className="header-container">
-        <h1>Learn</h1>
+        <h1 className="learn-header">Learn</h1>
         <Button variant="primary">My Saved Resources</Button>
       </div>
       <Container className="mt-4">

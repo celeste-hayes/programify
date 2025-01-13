@@ -30,7 +30,7 @@ const CodePlayground = () => {
     <div className="container-fluid">
       <div className="row">
         {/* Sidebar */}
-        <nav className="col-md-3 col-lg-2 d-md-block bg-dark text-light sidebar">
+        <nav className="col-md-3 col-lg-2 d-md-block text-light code-sidebar">
           <div className="position-sticky pt-3">
             <h4 className="text-center">Subjects</h4>
             <ul className="nav flex-column">

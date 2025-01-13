@@ -28,7 +28,7 @@ const Filters = ({ onFilterChange }) => {
   return (
     <div className="filters-container">
       <ButtonGroup className="mb-3">
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <Button
             key={category}
             onClick={() => onFilterChange(category)}
