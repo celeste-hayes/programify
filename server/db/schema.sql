@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS signupnow;
-CREATE DATABASE signupnow;
