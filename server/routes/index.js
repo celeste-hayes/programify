@@ -10,6 +10,15 @@ const router = Router();
 //router.use('/api', authenticateToken, apiRoutes);
 router.use('/api', apiRouter);
 
+// Serve environment variables to the client
+router.get('/env', (req, res) => {
+  res.json({
+    VITE_GITHUB_TOKEN: process.env.VITE_GITHUB_TOKEN,
+    VITE_YOUTUBE_API_KEY: process.env.VITE_YOUTUBE_API_KEY,
+    VITE_FREECODECAMP_API_URL: process.env.VITE_FREECODECAMP_API_URL,
+  });
+});
+
 // Default route
 router.get('/', (_req, res) => {
   res.send('Welcome to the API');
