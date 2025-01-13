@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/dashboard.css";
-import InspoCard from "../components/DashboardSections/InspoCardComponent";
+//import InspoCard from "../components/DashboardSections/InspoCardComponent";
+import Goals from "../components/DashboardSections/GoalSection";
 
 export default function Dashboard() {
   return (
@@ -30,7 +31,7 @@ export default function Dashboard() {
       <h1 className="goal-header">
         THINK IT. <span className="coding"> INK IT. </span><span> DO IT .</span>
       </h1>
-      <InspoCard />
+      <Goals />
     </div>
   );
 }

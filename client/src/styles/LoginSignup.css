@@ -1,8 +1,6 @@
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
@@ -51,10 +49,10 @@ body {
 }
 
 .inputs {
-    margin-top: 40px;  /* Adjusted the top margin for inputs */
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Reduced the gap between the inputs */
+    gap: 20px;
 }
 
 .input {
@@ -88,8 +86,8 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 40px auto; /* Reduced the top and bottom margin for submit container */
-    padding: 10px 0; /* Reduced padding */
+    margin: 40px auto;
+    padding: 10px 0;
 }
 
 .submit {
@@ -97,52 +95,46 @@ body {
     justify-content: center;
     align-items: center;
     width: 220px;
-    height: 50px; /* Reduced the height of the buttons */
+    height: 50px;
     border-radius: 50px;
     border: none;
-    font-size: 22px; /* Adjusted font size */
+    font-size: 22px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Gray (Inactive) state */
 .submit.gray {
     background-color: #ccc;
     border-color: #ccc;
     color: #666;
     cursor: not-allowed;
 }
-
 .submit.gray:hover {
     background-color: #ccc;
     border-color: #ccc;
 }
 
-/* Toggle button (Login/Sign Up button) */
 .submit.toggle-button {
-    background-color: #4c00b4; /* Purple */
+    background-color: #4c00b4;
     border-color: #4c00b4;
     color: white;
+    cursor: pointer;
 }
-
 .submit.toggle-button:hover {
-    background-color: #4500a1; /* Darker shade of purple on hover */
+    background-color: #4500a1;
     border-color: #4500a1;
 }
 
-/* Active Submit button (for Sign Up/Login) */
 .submit.submit-active {
-    background-color: #F2AF29; /* Golden-yellow */
+    background-color: #F2AF29;
     border-color: #F2AF29;
     color: white;
 }
-
 .submit.submit-active:hover {
-    background-color: #e59b26; /* Slightly darker golden yellow on hover */
+    background-color: #e59b26;
     border-color: #e59b26;
 }
-
 .submit:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);

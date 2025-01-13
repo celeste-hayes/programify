@@ -9,7 +9,6 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
 const LoginSignup = () => {
     const [action, setAction] = useState("Sign Up");
     const [formData, setFormData] = useState({
@@ -174,24 +173,25 @@ const LoginSignup = () => {
                 </div>
 
                 <div className="submit-container">
-                <Button
-                    className={
-                        isFormValid() ? "submit submit-active" : "submit gray"  // Both buttons check if form is valid
-                    }
-                    type="submit"
-                    variant="primary"
-                    disabled={isSubmitting || !isFormValid()}
-                >
-                    {isSubmitting ? (action === "Sign Up" ? "Signing Up..." : "Logging In...") : action}
-                </Button>
+                    <Button
+                        className={
+                            isFormValid() ? "submit submit-active" : "submit gray"
+                        }
+                        type="submit"
+                        variant="primary"
+                        disabled={isSubmitting || !isFormValid()}
+                    >
+                        {isSubmitting ? (action === "Sign Up" ? "Signing Up..." : "Logging In...") : action}
+                    </Button>
 
-                <Button
-                    className={action === "Sign Up" ? "submit gray" : "submit toggle-button"}
-                    onClick={() => setAction(action === "Sign Up" ? "Login" : "Sign Up")}
-                    disabled={isSubmitting}
-                >
-                    {action === "Sign Up" ? "Login" : "Sign Up"}
-                </Button>
+                    {/* Toggle Button */}
+                    <Button
+                        className={action === "Sign Up" ? "submit toggle-button" : "submit toggle-button"}
+                        onClick={() => setAction(action === "Sign Up" ? "Login" : "Sign Up")}
+                        disabled={isSubmitting}
+                    >
+                        {action === "Sign Up" ? "Login" : "Sign Up"}
+                    </Button>
                 </div>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
             </Form>
@@ -200,3 +200,5 @@ const LoginSignup = () => {
 };
 
 export default LoginSignup;
+
+
