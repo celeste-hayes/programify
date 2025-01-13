@@ -4,7 +4,7 @@ import { BiSolidBriefcaseAlt, BiBrain, BiSolidQuoteLeft, BiSolidPencil } from "r
 import { RiResetRightLine } from "react-icons/ri";
 import '../styles/dashboard.css';
 
-export default function InspoCard({ category, text, refreshCard }) {
+export default function InspoCard({ category, description, refreshCard }) {
   const categoryIcons = {
     "Career Tips": <BiSolidBriefcaseAlt style={{ fontSize: '1rem', color: 'white' }} />,
     "Trivia": <BiBrain style={{ fontSize: '1rem', color: 'white' }} />,
@@ -40,7 +40,7 @@ export default function InspoCard({ category, text, refreshCard }) {
         </Button>
       </Card.Header>
       <Card.Body>
-        <Card.Text className="inspo-card-text">{text}</Card.Text>
+        <Card.Text className="inspo-card-text">{description}</Card.Text>
       </Card.Body>
     </Card>
   );
