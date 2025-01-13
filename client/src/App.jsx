@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './components/SideBar';
 import { Outlet, useLocation } from 'react-router-dom';
-import SignUp from './pages/home';
+//import SignUp from './pages/home';
 import Welcome from './pages/welcome';
 
 
@@ -13,7 +13,6 @@ export default function App() {
 
   return (
     <div>
-      <SignUp />
       <Welcome />
     </div>,
 

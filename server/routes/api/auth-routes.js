@@ -1,9 +1,7 @@
 import { Router } from 'express';
-import bcrypt from 'bcrypt'; // Ensure bcrypt is imported
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { User } from '../../models/index.js'; // Ensure the correct path to your User model
-
-console.log('bcrypt imported:', bcrypt);
+import { User } from '../../models/index.js';
 
 const router = Router();
 
@@ -11,8 +9,13 @@ const router = Router();
 export const register = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
+  // Log the entire request body for debugging
+  console.log('Request body:', req.body);
+
   try {
-    console.log('Request body:', req.body);
+    if (!email || !password || !firstName || !lastName) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
 
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
@@ -29,7 +32,7 @@ export const register = async (req, res) => {
       email,
       password: hashedPassword,
       firstName,
-      lastName
+      lastName,
     });
 
     console.log('New user created:', newUser);
