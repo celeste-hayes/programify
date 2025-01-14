@@ -20,7 +20,7 @@ export default defineConfig({
       protocol: 'ws',  // Use WebSocket for HMR (important if you're using http or https)
       host: 'localhost',  // Ensure the correct host for WebSocket connections
       port: 3001, // The same port as your Vite dev server
-      clientPort: 3001, // The port that the client connects on (defaults to 3000)
+      clientPort: 3000, // The port that the client connects on (defaults to 3000)
       timeout: 30000, // Optional: Set timeout for HMR to avoid issues in slow networks
     },
   },
