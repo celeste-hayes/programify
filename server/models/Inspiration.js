@@ -1,9 +1,6 @@
-// models/inspiration.js
 import { DataTypes, Model } from 'sequelize';
-
 // Define the Inspiration model
 export class Inspiration extends Model {}
-
 // Create and initialize the Inspiration model
 export function InspirationFactory(sequelize) {
   Inspiration.init({
@@ -14,18 +11,14 @@ export function InspirationFactory(sequelize) {
     },
     category: {
       type: DataTypes.STRING,
-      
     },
-    description: { 
+    description: {
       type: DataTypes.TEXT,
-      
     },
   }, {
     sequelize,
     tableName: 'inspo_cards',
     timestamps: false, // No timestamps needed
   });
-
   return Inspiration;
 }
-

@@ -19,8 +19,21 @@ const LoginSignup = () => {
     });
     const [errorMessage, setErrorMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [apiBaseUrl, setApiBaseUrl] = useState('');
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('/env')
+            .then(response => response.json())
+            .then(data => {
+                const baseUrl = import.meta.env.MODE === 'development'
+                    ? data.VITE_API_BASE_URL_DEV
+                    : data.VITE_API_BASE_URL_PROD;
+                setApiBaseUrl(baseUrl);
+            })
+            .catch(error => console.error('Error fetching environment variables:', error));
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -54,8 +67,18 @@ const LoginSignup = () => {
                 }),
             };
 
-            const response = await fetch("http://localhost:3001/api/auth/signup", requestOptions);
+            if (!apiBaseUrl) {
+                throw new Error('API Base URL is not set');
+            }
+            console.log('API Base URL:', apiBaseUrl);
+
+            const response = await fetch(`${apiBaseUrl}/api/auth/signup`, requestOptions);
             console.log('Response status:', response.status);
+
+            if (response.status === 404) {
+                throw new Error('The endpoint was not found.');
+            }
+
             const responseData = await response.json();
             console.log('Response data:', responseData);
 
@@ -174,9 +197,7 @@ const LoginSignup = () => {
 
                 <div className="submit-container">
                     <Button
-                        className={
-                            isFormValid() ? "submit submit-active" : "submit gray"
-                        }
+                        className={isFormValid() ? "submit submit-active" : "submit gray"}
                         type="submit"
                         variant="primary"
                         disabled={isSubmitting || !isFormValid()}
@@ -184,9 +205,8 @@ const LoginSignup = () => {
                         {isSubmitting ? (action === "Sign Up" ? "Signing Up..." : "Logging In...") : action}
                     </Button>
 
-                    {/* Toggle Button */}
                     <Button
-                        className={action === "Sign Up" ? "submit toggle-button" : "submit toggle-button"}
+                        className="submit toggle-button"
                         onClick={() => setAction(action === "Sign Up" ? "Login" : "Sign Up")}
                         disabled={isSubmitting}
                     >
@@ -200,5 +220,3 @@ const LoginSignup = () => {
 };
 
 export default LoginSignup;
-
-

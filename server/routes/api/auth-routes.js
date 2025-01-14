@@ -5,11 +5,9 @@ import { User } from '../../models/index.js';
 
 const router = Router();
 
-// User signup route
 export const register = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
-  // Log the entire request body for debugging
   console.log('Request body:', req.body);
 
   try {
@@ -37,7 +35,6 @@ export const register = async (req, res) => {
 
     console.log('New user created:', newUser);
 
-    // Generate a token for the user
     const token = jwt.sign(
       { email: newUser.email, firstName: newUser.firstName, lastName: newUser.lastName },
       process.env.JWT_SECRET_KEY || 'SECRET_KEY',
