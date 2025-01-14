@@ -16,6 +16,11 @@ export default defineConfig({
         target: 'http://localhost:3001', // Backend WebSocket server port
         ws: true,  // This is important for WebSocket connections
       },
+      '/auth': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false
+      },
     },
   },
   plugins: [react()],

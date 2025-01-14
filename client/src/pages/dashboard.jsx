@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/dashboard.css";
 import Goals from "../components/DashboardSections/GoalSection";
 import InspoCardComponent from "../components/DashboardSections/InspoCardComponent";
-
 export default function Dashboard() {
   return (
     <div className="dashboard-container">
@@ -12,7 +11,6 @@ export default function Dashboard() {
       <h3>Get Started. Try Things Out. Explore Something New.</h3>
       <img src="/src/assets/Programify2.svg" alt="Programify Logo" className="logo" />
       <hr className="section-divider" />
-      
       {/* Cards Section */}
       <div className="cards-container">
         <div className="card">

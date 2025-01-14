@@ -109,6 +109,14 @@ html, body {
   justify-content: center;
 }
 
+/* Inspo Card Styling */
+.inspo-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
 .inspo-card {
   border-radius: 10px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
@@ -137,7 +145,7 @@ html, body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
+  line-clamp: 3; 
   -webkit-box-orient: vertical;
 }
 
