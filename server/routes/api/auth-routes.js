@@ -48,8 +48,8 @@ export const register = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error during signup:', error);
-    return res.status(500).json({ error: 'Server error' });
+    console.error('Error during signup:', error.message);  // Add error logging
+    return res.status(500).json({ error: 'Server error', message: error.message });
   }
 };
 
