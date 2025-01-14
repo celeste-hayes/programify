@@ -54,7 +54,7 @@ const LoginSignup = () => {
                 }),
             };
 
-            const response = await fetch("/api/auth/signup", requestOptions);
+            const response = await fetch("http://localhost:3001/api/auth/signup", requestOptions);
             console.log('Response status:', response.status);
             const responseData = await response.json();
             console.log('Response data:', responseData);
