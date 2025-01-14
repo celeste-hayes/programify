@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  plugins: [react()],
   server: {
-    port: 3001,  // Port for the Vite dev server
+    port: 3000,  // Port for the Vite dev server
     open: true,  // Automatically open the browser when the server starts
     proxy: {
       '/api': {
