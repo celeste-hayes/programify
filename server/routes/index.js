@@ -16,6 +16,7 @@ router.get('/env', (req, res) => {
     VITE_GITHUB_TOKEN: process.env.VITE_GITHUB_TOKEN,
     VITE_YOUTUBE_API_KEY: process.env.VITE_YOUTUBE_API_KEY,
     VITE_FREECODECAMP_API_URL: process.env.VITE_FREECODECAMP_API_URL,
+    VITE_API_BASE_URL: process.env.VITE_API_BASE_URL,
   });
 });
 
